@@ -46,3 +46,4 @@ export const RegisterSchema = z
     message: "Las contraseñas no coinciden",
     path: ["confirmPassword"],
   });
+  
