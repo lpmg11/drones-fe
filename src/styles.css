@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(@fontsource-variable/inter/files/inter-latin-wght-normal.woff2)
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@theme {
+  --default-font-family: "Inter Variable";
+
+  /* Colores azul - color primario */
+  --color-blue-50: #e6f1ff;
+  --color-blue-100: #cce3ff;
+  --color-blue-200: #99c8ff;
+  --color-blue-300: #66adff;
+  --color-blue-400: #3392ff;
+  --color-blue-500: #1a73e8;
+  --color-blue-600: #0d62d9;
+  --color-blue-700: #0d47a1;
+  --color-blue-800: #073080;
+  --color-blue-900: #041e56;
+
+  /* Colores rojo - color secundario */
+  --color-red-50: #ffebee;
+  --color-red-100: #ffcdd2;
+  --color-red-200: #ef9a9a;
+  --color-red-300: #e57373;
+  --color-red-400: #ef5350;
+  --color-red-500: #e53935;
+  --color-red-600: #d32f2f;
+  --color-red-700: #c62828;
+  --color-red-800: #b71c1c;
+  --color-red-900: #7f0000;
+
+  /* Colores amarillo */
+  --color-yellow-50: #fffde7;
+  --color-yellow-100: #fff9c4;
+  --color-yellow-200: #fff59d;
+  --color-yellow-300: #fff176;
+  --color-yellow-400: #ffee58;
+  --color-yellow-500: #ffb300;
+  --color-yellow-600: #ffa000;
+  --color-yellow-700: #ff8f00;
+  --color-yellow-800: #ff6f00;
+  --color-yellow-900: #ff5722;
+
+  /* Colores verde */
+  --color-green-50: #e8f5e9;
+  --color-green-100: #c8e6c9;
+  --color-green-200: #a5d6a7;
+  --color-green-300: #81c784;
+  --color-green-400: #66bb6a;
+  --color-green-500: #4caf50;
+  --color-green-600: #2e7d32;
+  --color-green-700: #1b5e20;
+  --color-green-800: #0d4d10;
+  --color-green-900: #003d00;
+
+  /* Variables semánticas de color */
+  --color-primary: var(--color-blue-500);
+  --color-primary-light: var(--color-blue-300);
+  --color-primary-dark: var(--color-blue-700);
+
+  --color-secondary: var(--color-red-500);
+  --color-secondary-light: var(--color-red-300);
+  --color-secondary-dark: var(--color-red-700);
+
+  --color-warning: var(--color-yellow-500);
+  --color-warning-light: var(--color-yellow-300);
+  --color-warning-dark: var(--color-yellow-700);
+
+  --color-error: var(--color-red-600);
+  --color-error-light: var(--color-red-400);
+  --color-error-dark: var(--color-red-800);
+
+  --color-success: var(--color-green-500);
+  --color-success-light: var(--color-green-300);
+  --color-success-dark: var(--color-green-700);
+
+  --color-info: var(--color-blue-400);
+
+  /* Variables adicionales útiles */
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-border: #e0e0e0;
+
+  --color-primary-text: #212121;
+  --color-secondary-text: #757575;
+  --color-disabled-text: #bdbdbd;
+  --color-on-primary-text: #ffffff;
+  --color-on-secondary-text: #ffffff;
+  --color-on-error-text: #ffffff;
+}
+
+@custom-variant dark (&:where(.dark,.dark *));
