@@ -1,10 +1,10 @@
 import React from "react";
-import { FieldError, UseFormRegister } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 
 interface TextInputProps {
   label: string;
   register: UseFormRegister<any>;
-  errors?: Record<string, FieldError>;
+  errors?: any;
   [x: string]: any;
 }
 
