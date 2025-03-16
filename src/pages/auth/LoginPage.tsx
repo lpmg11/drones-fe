@@ -1,11 +1,21 @@
+import { post } from "@/api/axios";
 import PasswordInput from "@/components/ui/PasswordInput";
 import TextInput from "@/components/ui/TextInput";
+import Toast from "@/components/ui/Toast";
 import { LoginSchema } from "@/schemas/auth/requests";
+import { useStore } from "@/store/store";
 import { LoginType } from "@/types/auth/request";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const { setUsername, username } = useStore();
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -14,9 +24,34 @@ export const Login = () => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const onSubmit = (data: LoginType) => {
-    console.log(data);
+  interface loginResponse {
+    username: string;
+    role: string;
+  }
+
+  const onSubmit = async (data: LoginType) => {
+    try {
+      const response = await post("/api/v1/auth/login", data);
+      if (response.status !== 200) {
+        const error = response.data;
+        setToastMessage(error.error ?? "Error en la petición");
+        setShowToast(true);
+        throw new Error(error.error);
+      }
+      const session: loginResponse = response.data;
+      setUsername(session.username);
+      navigate("/home");
+      console.log(data);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      setToastMessage(errorMessage);
+      setShowToast(true);
+      console.error(error);
+    }
   };
+
+  console.log(errors);
 
   return (
     <div className="flex flex-col w-full h-screen items-center justify-center bg-gray-100">
@@ -24,6 +59,7 @@ export const Login = () => {
         <h1 className="text-2xl font-bold mb-6 text-primary-text">
           Inicio de sesión
         </h1>
+        <p className="text-gray-500 text-sm mb-4">{username}</p>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-full flex flex-col items-center"
@@ -48,6 +84,11 @@ export const Login = () => {
           </button>
         </form>
       </div>
+      <Toast
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 };
