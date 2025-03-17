@@ -27,6 +27,9 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (error.response?.status === 401) {
+      window.location.href = "/";
+    }
     // Extraer el mensaje de error del backend y lanzarlo
     const errorMessage = error.response?.data?.error ?? "Error en la petición";
     return Promise.reject(new Error(errorMessage));

@@ -8,11 +8,11 @@ import { LoginType } from "@/types/auth/request";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { setUsername, username } = useStore();
+  const { setUsername } = useStore();
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
@@ -56,10 +56,12 @@ export const Login = () => {
   return (
     <div className="flex flex-col w-full h-screen items-center justify-center bg-gray-100">
       <div className="w-[400px] bg-white p-8 shadow-lg rounded-lg flex flex-col justify-center items-center">
-        <h1 className="text-2xl font-bold mb-6 text-primary-text">
+        <h1 className="text-2xl font-bold mb-4 text-primary-text">
           Inicio de sesión
         </h1>
-        <p className="text-gray-500 text-sm mb-4">{username}</p>
+        <Link to="/register" className="text-blue-500 mb-2 hover:underline">
+          ¿No tienes cuenta? Regístrate
+        </Link>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-full flex flex-col items-center"
