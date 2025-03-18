@@ -1,21 +1,12 @@
-import { Outlet, Route } from "react-router";
+import { BrowserRouter, Outlet, Route } from "react-router";
 import App from "../App";
 
 export const PublicRoutes = () => {
   return (
-    <Route
-        element={<Outlet />}
-        path="home"
-    >
-      <Route
-          element={<App />}
-          index
-      />
-
-      <Route
-          element={<App />}
-          path="shipment"
-      />
-    </Route>
+    <BrowserRouter>
+      <Route element={<App />}>
+        <Route element={<Outlet />} />
+      </Route>
+    </BrowserRouter>
   );
 };

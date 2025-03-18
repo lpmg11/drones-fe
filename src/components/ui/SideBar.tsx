@@ -26,19 +26,19 @@ const NAV_LINKS = [
     pathname: "/dashboard/shipment",
     urlReference: ["shipment"],
   },
-  {
-    icon: (
-      <Icon
-        icon="fluent-emoji-high-contrast:passport-control"
-        width="24"
-        height="24"
-      />
-    ),
-    text: "Control de repartidores",
-    url: "/dashboard/delivery-control",
-    pathname: "/dashboard/delivery-control",
-    urlReference: ["delivery-control"],
-  },
+  // {
+  //   icon: (
+  //     <Icon
+  //       icon="fluent-emoji-high-contrast:passport-control"
+  //       width="24"
+  //       height="24"
+  //     />
+  //   ),
+  //   text: "Control de repartidores",
+  //   url: "/dashboard/delivery-control",
+  //   pathname: "/dashboard/delivery-control",
+  //   urlReference: ["delivery-control"],
+  // },
 ];
 
 const FOOTER_LINKS = [
