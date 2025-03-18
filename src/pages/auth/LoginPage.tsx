@@ -40,7 +40,7 @@ export const Login = () => {
       }
       const session: loginResponse = response.data;
       setUsername(session.username);
-      navigate("/home");
+      navigate("/dashboard");
       console.log(data);
     } catch (error) {
       const errorMessage =

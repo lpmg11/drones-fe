@@ -1,5 +1,5 @@
 import { get } from "@/api/axios";
-import Header from "@/components/ui/Header";
+import Sidebar from "@/components/ui/SideBar";
 import { useEffect, useState } from "react";
 
 export const Dashboard: React.FC = () => {
@@ -16,7 +16,7 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="w-full">
-      <Header />
+      <Sidebar />
       <p>{ping}</p>
     </div>
   );

@@ -7,10 +7,12 @@ const Header: React.FC = () => {
   const { username, setUsername } = useStore();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    post("/api/v1/auth/logout");
-    setUsername("");
-    navigate("/");
+  const handleLogout = async () => {
+    post("/api/v1/auth/logout").then(() => {
+      console.log("Logged out");
+      setUsername("");
+      navigate("/");
+    });
   };
 
   return (
