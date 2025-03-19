@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { setUsername } = useStore();
+  const { setUsername, setRole } = useStore();
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
@@ -40,6 +40,7 @@ export const Login = () => {
       }
       const session: loginResponse = response.data;
       setUsername(session.username);
+      setRole(session.role);
       navigate("/dashboard");
       console.log(data);
     } catch (error) {

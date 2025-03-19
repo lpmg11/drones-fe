@@ -1,10 +1,12 @@
 import { cn } from "@/lib/utils";
+import { useStore } from "@/store/store";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import Logout from "./Logout";
 import SidebarLink from "./SideBarLink";
 
-const NAV_LINKS = [
+const NAV_LINKS_USER = [
   {
     icon: <Icon icon="tabler:home" width="24" height="24" />,
     text: "Home",
@@ -26,20 +28,68 @@ const NAV_LINKS = [
     pathname: "/dashboard/shipment",
     urlReference: ["shipment"],
   },
-  // {
-  //   icon: (
-  //     <Icon
-  //       icon="fluent-emoji-high-contrast:passport-control"
-  //       width="24"
-  //       height="24"
-  //     />
-  //   ),
-  //   text: "Control de repartidores",
-  //   url: "/dashboard/delivery-control",
-  //   pathname: "/dashboard/delivery-control",
-  //   urlReference: ["delivery-control"],
-  // },
 ];
+
+const NAV_LINKS_ADMIN = [
+  {
+    icon: <Icon icon="tabler:home" width="24" height="24" />,
+    text: "Home",
+    url: "/dashboard",
+    pathname: "/dashboard",
+    urlReference: ["dashboard"],
+  },
+  {
+    icon: <Icon icon="bx:bxs-store" width="24" height="24" />,
+    text: "Almacenes",
+    url: "/dashboard/warehouses",
+    pathname: "/dashboard/warehouses",
+    urlReference: ["warehouses"],
+  },
+  {
+    icon: <Icon icon="iconoir:drone" width="24" height="24" />,
+    text: "drones",
+    url: "/dashboard/drones",
+    pathname: "/dashboard/drones",
+    urlReference: ["drones"],
+  },
+];
+
+const NAV_LINKS_PROVIDER = [
+  {
+    icon: <Icon icon="tabler:home" width="24" height="24" />,
+    text: "Home",
+    url: "/dashboard",
+    pathname: "/dashboard",
+    urlReference: ["dashboard"],
+  },
+  {
+    icon: <Icon icon="gg:profile" width="24" height="24" />,
+    text: "Clientes",
+    url: "/dashboard/clients",
+    pathname: "/dashboard/clients",
+    urlReference: ["clients"],
+  },
+  {
+    icon: <Icon icon="carbon:delivery" width="24" height="24" />,
+    text: "Envíos",
+    url: "/dashboard/shipment",
+    pathname: "/dashboard/shipment",
+    urlReference: ["shipment"],
+  },
+  {
+    icon: <Icon icon="bx:bxs-store" width="24" height="24" />,
+    text: "Tiendas",
+    url: "/dashboard/stores",
+    pathname: "/dashboard/stores",
+    urlReference: ["stores"],
+  },
+];
+
+const LINKS = {
+  user: NAV_LINKS_USER,
+  admin: NAV_LINKS_ADMIN,
+  provider: NAV_LINKS_PROVIDER,
+};
 
 const FOOTER_LINKS = [
   {
@@ -52,7 +102,19 @@ const FOOTER_LINKS = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   const [navBarOpen, setNavBarOpen] = useState(false);
+  const { role } = useStore() as { role: keyof typeof LINKS };
+
+  useEffect(() => {
+    console.log(role);
+    if (!role) {
+      navigate("/");
+      return;
+    }
+  }, [role, navigate]);
+
+  const NAV_LINKS = LINKS[role];
 
   return (
     <aside
@@ -99,6 +161,7 @@ export default function Sidebar() {
         <nav className="w-full flex flex-col items-center gap-y-3 flex-grow">
           {NAV_LINKS.map((link) => (
             <SidebarLink
+              key={link.text}
               icon={link.icon}
               text={link.text}
               url={link.url}
@@ -110,6 +173,7 @@ export default function Sidebar() {
         <footer className="w-full space-y-2 border-t pt-2 flex flex-col justify-center">
           {FOOTER_LINKS.map((link) => (
             <SidebarLink
+              key={link.text}
               icon={link.icon}
               text={link.text}
               url={link.url}

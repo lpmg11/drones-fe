@@ -1,5 +1,6 @@
 import { post } from "@/api/axios";
 import { cn } from "@/lib/utils";
+import { useStore } from "@/store/store";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router";
 
@@ -8,12 +9,14 @@ interface LogoutProps {
 }
 
 export default function Logout({ navBarOpen }: LogoutProps) {
+  const { logOut } = useStore();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     post("/api/v1/auth/logout").then(() => {
       console.log("Logged out");
+      logOut();
       navigate("/");
     });
   };
