@@ -1,12 +1,13 @@
+import { post } from "@/api/axios";
 import PasswordInput from "@/components/ui/PasswordInput";
 import TextInput from "@/components/ui/TextInput";
+import Toast from "@/components/ui/Toast";
 import { RegisterSchema } from "@/schemas/auth/requests";
 import { RegisterType } from "@/types/auth/request";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
-
-// Definición del esquema de validación para el registro
+import { Link, useNavigate } from "react-router";
 
 export const Register = () => {
   const {
@@ -17,8 +18,34 @@ export const Register = () => {
     resolver: zodResolver(RegisterSchema),
   });
 
-  const onSubmit = (data: RegisterType) => {
-    console.log(data);
+  const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const onSubmit = async (data: RegisterType) => {
+    try {
+      const request = {
+        username: data.username,
+        password: data.password,
+      };
+
+      const response = await post("/api/v1/auth/register", request);
+
+      if (response.status !== 200) {
+        const error = response.data;
+        setToastMessage(error.error ?? "Error en la petición");
+        setShowToast(true);
+        throw new Error(error.error);
+      }
+
+      navigate("/");
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      setToastMessage(errorMessage);
+      setShowToast(true);
+      console.error(error);
+    }
   };
 
   return (
@@ -58,6 +85,11 @@ export const Register = () => {
           </button>
         </form>
       </div>
+      <Toast
+        message={toastMessage}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 };
