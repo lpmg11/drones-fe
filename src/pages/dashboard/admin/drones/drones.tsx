@@ -5,20 +5,14 @@ const links: LinkType[] = [
   {
     id: "1",
     label: "Drones",
-    url: "/dashboard/admin/drones",
+    url: "/dashboard/drones",
     relativePath: "drones",
   },
   {
     id: "2",
-    label: "Almacenes",
-    url: "/dashboard/admin/warehouses",
-    relativePath: "warehouses",
-  },
-  {
-    id: "3",
-    label: "Clientes",
-    url: "/dashboard/admin/clients",
-    relativePath: "clients",
+    label: "Modelo de Drones",
+    url: "/dashboard/drones/models",
+    relativePath: "models",
   },
 ];
 

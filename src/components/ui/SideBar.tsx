@@ -107,7 +107,6 @@ export default function Sidebar() {
   const { role } = useStore() as { role: keyof typeof LINKS };
 
   useEffect(() => {
-    console.log(role);
     if (!role) {
       navigate("/");
       return;
