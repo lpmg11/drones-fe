@@ -1,4 +1,4 @@
-import WarehousesMap from "@/components/ui/warehousesMap";
+import WarehousesMap from "../../components/ui/warehousesMap";
 
 export const Dashboard: React.FC = () => {
   return (
