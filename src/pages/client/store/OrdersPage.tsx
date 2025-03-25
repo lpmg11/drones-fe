@@ -81,7 +81,9 @@ export const OrderPage: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col">
-      <h1 className="text-xl mt-4 font-normal text-blue-600 mb-4">New order</h1>
+      <h1 className="text-xl mt-4 font-normal text-blue-600 mb-4">
+        Nuevo pedido
+      </h1>
       {loading ? (
         <div className="flex items-center justify-center h-full">
           Loading...
