@@ -101,7 +101,7 @@ export default function MapComponent({
   return (
     <MapContainer
       center={[position.lat, position.lng]}
-      zoom={13}
+      zoom={16}
       className={className ?? "h-[500px] w-full"}
     >
       <TileLayer

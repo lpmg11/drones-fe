@@ -15,11 +15,11 @@ const NAV_LINKS_USER = [
     urlReference: ["dashboard"],
   },
   {
-    icon: <Icon icon="gg:profile" width="24" height="24" />,
-    text: "Clientes",
-    url: "/dashboard/clients",
-    pathname: "/dashboard/clients",
-    urlReference: ["clients"],
+    icon: <Icon icon="bi:shop" width="24" height="24" />,
+    text: "Tienda",
+    url: "/dashboard/store",
+    pathname: "/dashboard/store",
+    urlReference: ["store"],
   },
   {
     icon: <Icon icon="carbon:delivery" width="24" height="24" />,
@@ -27,6 +27,13 @@ const NAV_LINKS_USER = [
     url: "/dashboard/shipment",
     pathname: "/dashboard/shipment",
     urlReference: ["shipment"],
+  },
+  {
+    icon: <Icon icon="uil:wallet" width="24" height="24" />,
+    text: "Billetera",
+    url: "/dashboard/wallet",
+    pathname: "/dashboard/wallet",
+    urlReference: ["wallet"],
   },
 ];
 
@@ -39,6 +46,13 @@ const NAV_LINKS_ADMIN = [
     urlReference: ["dashboard"],
   },
   {
+    icon: <Icon icon="iconoir:drone" width="24" height="24" />,
+    text: "drones",
+    url: "/dashboard/drones",
+    pathname: "/dashboard/drones",
+    urlReference: ["drones"],
+  },
+  {
     icon: <Icon icon="bx:bxs-store" width="24" height="24" />,
     text: "Almacenes",
     url: "/dashboard/warehouses",
@@ -46,11 +60,11 @@ const NAV_LINKS_ADMIN = [
     urlReference: ["warehouses"],
   },
   {
-    icon: <Icon icon="iconoir:drone" width="24" height="24" />,
-    text: "drones",
-    url: "/dashboard/drones",
-    pathname: "/dashboard/drones",
-    urlReference: ["drones"],
+    icon: <Icon icon="gg:profile" width="24" height="24" />,
+    text: "Almacenes",
+    url: "/dashboard/clients",
+    pathname: "/dashboard/clients",
+    urlReference: ["clients"],
   },
 ];
 
@@ -65,23 +79,46 @@ const NAV_LINKS_PROVIDER = [
   {
     icon: <Icon icon="gg:profile" width="24" height="24" />,
     text: "Clientes",
-    url: "/dashboard/clients",
-    pathname: "/dashboard/clients",
-    urlReference: ["clients"],
-  },
-  {
-    icon: <Icon icon="carbon:delivery" width="24" height="24" />,
-    text: "Envíos",
-    url: "/dashboard/shipment",
-    pathname: "/dashboard/shipment",
-    urlReference: ["shipment"],
+    url: "/dashboard/profile",
+    pathname: "/dashboard/profile",
+    urlReference: ["profile"],
   },
   {
     icon: <Icon icon="bx:bxs-store" width="24" height="24" />,
-    text: "Tiendas",
-    url: "/dashboard/stores",
-    pathname: "/dashboard/stores",
-    urlReference: ["stores"],
+    text: "Productos",
+    url: "/dashboard/products",
+    pathname: "/dashboard/products",
+    urlReference: ["products"],
+  },
+];
+
+const FOOTER_LINKS_USER = [
+  {
+    icon: <Icon icon="majesticons:settings-cog-line" width="24" height="24" />,
+    text: "Ajustes",
+    url: "/dashboard/settings",
+    pathname: "/dashboard/settings",
+    urlReference: ["settings"],
+  },
+];
+
+const FOOTER_LINKS_PROVIDER = [
+  {
+    icon: <Icon icon="majesticons:settings-cog-line" width="24" height="24" />,
+    text: "Ajustes",
+    url: "/dashboard/settings",
+    pathname: "/dashboard/provider/settings",
+    urlReference: ["settings"],
+  },
+];
+
+const FOOTER_LINKS_ADMIN = [
+  {
+    icon: <Icon icon="majesticons:settings-cog-line" width="24" height="24" />,
+    text: "Ajustes",
+    url: "/dashboard/settings",
+    pathname: "/dashboard/admin/settings",
+    urlReference: ["settings"],
   },
 ];
 
@@ -91,15 +128,11 @@ const LINKS = {
   provider: NAV_LINKS_PROVIDER,
 };
 
-const FOOTER_LINKS = [
-  {
-    icon: <Icon icon="majesticons:settings-cog-line" width="24" height="24" />,
-    text: "Ajustes",
-    url: "/dashboard/settings",
-    pathname: "/dashboard/settings",
-    urlReference: ["settings"],
-  },
-];
+const FOOTER_LINKS_TYPES = {
+  user: FOOTER_LINKS_USER,
+  admin: FOOTER_LINKS_ADMIN,
+  provider: FOOTER_LINKS_PROVIDER,
+};
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -114,6 +147,8 @@ export default function Sidebar() {
   }, [role, navigate]);
 
   const NAV_LINKS = LINKS[role];
+
+  const FOOTER_LINKS = FOOTER_LINKS_TYPES[role];
 
   return (
     <aside

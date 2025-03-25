@@ -51,4 +51,12 @@ export const post = async (
   return axiosInstance.post(url, data, config);
 };
 
+export const put = async (
+  url: string,
+  data?: any,
+  config?: AxiosRequestConfig,
+): Promise<AxiosResponse> => {
+  return axiosInstance.put(url, data, config);
+};
+
 export default axiosInstance;

@@ -42,7 +42,6 @@ export const Login = () => {
       setUsername(session.username);
       setRole(session.role);
       navigate("/dashboard");
-      console.log(data);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
