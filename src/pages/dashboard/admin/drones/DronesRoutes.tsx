@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import { DroneModels } from "./DroneModels";
-import { Drones } from "./Drones";
+import { Drones } from "./drones";
 import { DronesLayout } from "./layouts/DronesLayout";
 
 export default function DronesRoutes() {
